@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service d'authentification centralisé</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* IMAGE DE FOND (Bâtiment) */
+            background: url('https://static.affluences.media/sites-pictures/sites/dYgdwRubTHb5xOCLJGvIh.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* BANDEAU BLANC HAUT */
+        header {
+            background-color: white;
+            height: 85px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            height: 60px;
+        }
+
+        /* CONTENEUR PRINCIPAL */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 85px;
+        }
+
+        /* BOITE DE LOGIN */
+        .login-box {
+            width: 380px;
+            background: #E9EBED; /* Gris du screen */
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .alert-session {
+            color: #d32f2f;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* INPUTS AVEC ICONES */
+        .input-row {
+            display: flex;
+            margin-bottom: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .icon-box {
+            background: #F0F2F4;
+            padding: 10px 15px;
+            border-right: 1px solid #ced4da;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 45px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: white;
+            font-size: 15px;
+        }
+
+        /* CHECKBOXES GRISES */
+        .check-container {
+            display: flex;
+            align-items: center;
+            background: #F0F2F4;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #495057;
+        }
+
+        .check-container input {
+            flex: 0;
+            margin-right: 15px;
+        }
+
+        /* BOUTON ROUGE */
+        .btn-submit {
+            width: 100%;
+            background-color: #C63D31;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #b0352b;
+        }
+
+        /* FOOTER */
+        .footer-link {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .footer-link u { cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://auth.univ-fcomte.fr/static/custom/logos/custom-logo.svg" alt="Logo">
+</header>
+
+<div class="wrapper">
+    <div class="login-box">
+        <div class="alert-session">
+            Votre session a expiré, vous devez vous réauthentifier
+        </div>
+
+        <form onsubmit="alert('Ceci est un test de phishing !'); return false;">
+            <div class="input-row">
+                <div class="icon-box">👤</div>
+                <input type="text" placeholder="Identifiant">
+            </div>
+
+            <div class="input-row">
+                <div class="icon-box">🔒</div>
+                <input type="password" placeholder="Mot de passe">
+            </div>
+
+            <div class="check-container">
+                <input type="checkbox"> <span>Voir mes dernières connexions</span>
+            </div>
+
+            <div class="check-container">
+                <input type="checkbox"> 
+                <span>Faire confiance à ce navigateur lors des prochaines connexions (double authentification uniquement)</span>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                ➜ Se connecter
+            </button>
+        </form>
+    </div>
+
+    <div class="footer-link">
+        Première connexion ? <u>Activez votre compte.</u>
+    </div>
+</div>
+
+</body>
+</html>
