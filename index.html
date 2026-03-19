@@ -165,16 +165,15 @@
 
 <script>
     document.getElementById('demoForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // On ne change pas de page tout de suite
+        e.preventDefault(); // On bloque l'envoi du formulaire
         
-        // Message de sensibilisation
-        alert("⚠️ ATTENTION : PHISHING DÉTECTÉ ! ⚠️\n\n" +
-              "Ceci est un exercice de sensibilisation.\n" +
-              "Si cette page était réelle, vos identifiants viendraient d'être volés.\n\n" +
-              "Conseil : Vérifiez toujours l'URL dans la barre d'adresse !");
+        // Message simplifié
+        alert("⚠️ PIÈGE DÉTECTÉ ⚠️\n\n" +
+              "C'est une page de Phishing (hameçonnage).\n" +
+              "Regarde l'URL en haut : ce n'est pas le site officiel !\n\n" +
+              "Tes identifiants auraient pu être volés ici.");
         
-        // Redirection vers le vrai site après le message
-        window.location.href = "https://notes.iut-nfc.umlp.fr/";
+        // On ne met pas de redirection, l'utilisateur reste sur la page.
     });
 </script>
 
